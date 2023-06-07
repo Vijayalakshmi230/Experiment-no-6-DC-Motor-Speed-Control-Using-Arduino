@@ -1,4 +1,4 @@
-# Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino
+# Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino
 ### AIM : To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
 
 ### Components Required:
@@ -27,59 +27,54 @@ As shown in the circuit diagram we need only 3 Arduino terminal pins, pin 8 is f
 
 ### PRGORAM 
 #define m1 2
-
 #define m2 3
-
-#define m3 13
-
-int buttonState = 0;
+int output;
+int pin = 6;
 
 void setup()
-
 {
-
-pinMode(m1, OUTPUT);
-
-pinMode(m2, OUTPUT);
-
-pinMode(m3, OUTPUT);
-
+  pinMode(m1, OUTPUT);
+  pinMode(m2, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop()
-
 {
+  digitalWrite(m1, HIGH);
+  digitalWrite(m2, LOW);
+  delay(2000);
+  digitalWrite(m1, LOW);
+  delay(1000);
 
-buttonState = digitalRead(13);
-
-if (buttonState == HIGH) 
-{
-
-digitalWrite(m1, HIGH);
-
-digitalWrite(m2, LOW);
-
-}
-
-else
-
-{
-
-digitalWrite(m1, LOW);
-
-digitalWrite(m2, HIGH);
-
-}
-
-delay(1000);
-
+  digitalWrite(m1, LOW);
+  digitalWrite(m2, HIGH);
+  delay(2000);
+  digitalWrite(m2, LOW);
+  delay(1000);
+  
+  output = map(analogRead(A0), 0, 1023, 0, 255);
+  Serial.println(output);
+  analogWrite(pin, output);
+  if (output>=600)
+  {
+    digitalWrite(2,HIGH);
+  }
+  else
+    digitalWrite(2, LOW);
+  delay(1000);
 }
 
 ### OUTPUT
-![image](https://github.com/Vijayalakshmi230/Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino/assets/127175503/3ceec35b-8aa1-4060-8621-a0bfd3bd0a1c)
+
+Before Simulation:
+![image](https://github.com/Vijayalakshmi230/Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino/assets/127175503/3e7a4817-7378-4c14-8847-b29d72f678e7)
+
+
+After simulation:
+![image](https://github.com/Vijayalakshmi230/Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino/assets/127175503/17160188-8044-42ed-a9f5-a92db2d5a11c)
 
 
 
 ### RESULTS :
-Thus we have controled the speed and the direction of a DC motor using L293D driver ic( H- bridge)
+To control the speed and the direction of a DC motor using L293D driven successfully
 
