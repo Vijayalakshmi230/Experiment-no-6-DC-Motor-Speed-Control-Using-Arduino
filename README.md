@@ -27,41 +27,69 @@ As shown in the circuit diagram we need only 3 Arduino terminal pins, pin 8 is f
 
 ### PRGORAM 
 #define m1 2
+
 #define m2 3
+
 int output;
+
 int pin = 6;
 
 void setup()
+
 {
-  pinMode(m1, OUTPUT);
-  pinMode(m2, OUTPUT);
-  Serial.begin(9600);
+
+pinMode(m1, OUTPUT);
+
+pinMode(m2, OUTPUT);
+
+Serial.begin(9600);
+
 }
 
 void loop()
-{
-  digitalWrite(m1, HIGH);
-  digitalWrite(m2, LOW);
-  delay(2000);
-  digitalWrite(m1, LOW);
-  delay(1000);
 
-  digitalWrite(m1, LOW);
-  digitalWrite(m2, HIGH);
-  delay(2000);
-  digitalWrite(m2, LOW);
-  delay(1000);
+{
+
+digitalWrite(m1, HIGH);
+
+digitalWrite(m2, LOW);
+
+delay(2000);
+
+digitalWrite(m1, LOW);
+
+delay(1000);
+
+digitalWrite(m1, LOW);
+
+digitalWrite(m2, HIGH);
+
+delay(2000);
+
+digitalWrite(m2, LOW);
+
+delay(1000);
   
-  output = map(analogRead(A0), 0, 1023, 0, 255);
-  Serial.println(output);
-  analogWrite(pin, output);
-  if (output>=600)
-  {
-    digitalWrite(2,HIGH);
-  }
-  else
-    digitalWrite(2, LOW);
-  delay(1000);
+output = map(analogRead(A0), 0, 1023, 0, 255);
+
+Serial.println(output);
+
+analogWrite(pin, output);
+
+if (output>=600)
+
+{
+
+digitalWrite(2,HIGH);
+
+}
+
+else
+
+digitalWrite(2, LOW);
+
+delay(1000);
+
 }
 
 ### OUTPUT
